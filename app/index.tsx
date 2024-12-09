@@ -3,6 +3,13 @@ import React, { useCallback, useEffect, useState } from 'react';
 
 export default function Index() {
 	const [jobData, setJobData] = useState([]);
+
+	function convertToPlain(html){
+		var tempDivElement = document.createElement("div");
+		tempDivElement.innerHTML = html;
+		return tempDivElement.textContent || tempDivElement.innerText || "";
+	}
+
 	async function getJobs() {
 		fetch(`${process.env.EXPO_PUBLIC_API_URL}`)
 		.then(function(response){
